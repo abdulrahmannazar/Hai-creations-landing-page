@@ -115,23 +115,6 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Graphic Design Section */}
-      <section className="graphic-design-section">
-        <div className="collage-container">
-          <img src="images/creative-collage.png" alt="Creative Collage" className="collage-img" />
-        </div>
-        
-        <div className="graphic-text-content">
-          <p>As a multi-disciplinary agency, we engineer creativity using digital and print media to deliver brand solutions that will grow your business.</p>
-          <p>We know how to draw the eye and hook customers in the first three seconds and create a lasting impression in our creatives.</p>
-        </div>
-
-        <div className="huge-vertical-graphic">
-          <div className="huge-design">design ux & ui</div>
-          <div className="huge-graphic">graphic</div>
-        </div>
-      </section>
     </>
   );
 }
