@@ -288,7 +288,14 @@ body {
     object-fit: cover; 
 }
 
-/* Graphic Design Section */
+
+
+
+
+
+
+
+
 .graphic-design-section {
     background-color: #4b0e68;
     width: 100%;
@@ -336,20 +343,22 @@ body {
     margin-bottom: 0;
 }
 
+/* Forced Transform Layout matching your target image */
 .huge-vertical-graphic {
     position: absolute;
-    right: 0px;
+    right: -100px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(90deg);
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 30px;
     z-index: 1;
     pointer-events: none;
+    white-space: nowrap;
 }
 
 .huge-graphic {
-    writing-mode: vertical-lr;
     font-size: 160px;
     font-weight: bold;
     font-family: Arial, sans-serif;
@@ -359,14 +368,12 @@ body {
 }
 
 .huge-design {
-    writing-mode: vertical-lr;
     font-size: 70px;
     font-weight: bold;
     font-family: Arial, sans-serif;
     color: rgba(0, 0, 0, 0.12);
     text-transform: lowercase;
     line-height: 0.8;
-    margin-left: -15px;
 }
 
 @media (max-width: 900px) {
