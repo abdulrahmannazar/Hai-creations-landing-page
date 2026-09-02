@@ -2,8 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [showBanners, setShowBanners] = useState(false);
+  const [expandedBanner, setExpandedBanner] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleBanner = (index) => {
+    if (expandedBanner === index) {
+      setExpandedBanner(null); // Closes if already open
+    } else {
+      setExpandedBanner(index); // Opens the clicked one
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -172,28 +180,36 @@ function App() {
         </div>
       </section>
 
+      
+
+      {/* Our Work Section */}
       <section className="our-work-section" id="work">
-        <div 
-          className="our-work-title" 
-          onClick={() => setShowBanners(!showBanners)}
-          title="Click to view our banners"
-        >
+        <div className="our-work-title">
           <div className="our-text">OUR</div>
           <div className="work-text-outline">WORK</div>
         </div>
 
-        <div className={`banners-wrapper ${showBanners ? 'open' : ''}`}>
-          <div className="banners-inner">
-            <div className="banners-grid">
-              {[...Array(10)].map((_, i) => (
+        {/* Banners are now always visible */}
+        <div className="banners-wrapper">
+          <div className="banners-grid">
+            {[...Array(10)].map((_, i) => (
+              <div className="banner-item" key={i}>
                 <img 
-                  key={i} 
                   src={`images/Banner${i + 1}.png`} 
                   alt={`Banner ${i + 1}`} 
-                  className="banner-pic"
+                  className="banner-pic cursor-pointer"
+                  onClick={() => toggleBanner(i)}
                 />
-              ))}
-            </div>
+                
+                {/* Expandable Small Images Container */}
+                <div className={`sub-images-wrapper ${expandedBanner === i ? 'expanded' : ''}`}>
+                  <div className="sub-images-inner">
+                    <img src={`images/detail${i + 1}-1.png`} alt="Detail 1" className="sub-image" />
+                    <img src={`images/detail${i + 1}-2.png`} alt="Detail 2" className="sub-image" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         
