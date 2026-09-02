@@ -87,7 +87,7 @@ body { background: #ffffff; font-family: Arial, sans-serif; scroll-behavior: smo
         padding: 20px 15px; /* Tighter padding for mobile screens */
         gap: 10px; /* Reduces the gap between the two small images to maximize their size */
     }
-.banners-grid { display: grid; grid-template-columns: 1fr; gap: 0px; }
+.banners-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
 .banner-item { display: flex; flex-direction: column; width: 100%; }
 .banner-pic { width: 100%; height: auto; border-radius: 0px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); object-fit: cover; display: block; transition: transform 0.2s ease; position: relative; z-index: 2; }
 .banner-pic.cursor-pointer:hover { transform: scale(1.02); }
