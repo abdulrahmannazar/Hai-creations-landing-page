@@ -22,14 +22,50 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
 .trusted-by-title::after { margin-left: 25px; }
 .trusted-by-logos { width: 100%; height: auto; margin-top: 40px; display: block; object-fit: contain; }
 
-/* Our Services Section */
-.our-services-section { display: flex; max-width: 1200px; margin: 100px auto; padding: 0 20px; gap: 60px; }
-.services-sidebar { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+/* --- Our Services Section --- */
+.our-services-section { 
+    display: flex; 
+    max-width: 1200px; 
+    margin: 100px auto; 
+    padding: 0 20px; 
+    gap: 60px; 
+    align-items: flex-start; /* Crucial: Allows the sidebar to be sticky */
+}
+
+.services-sidebar { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    position: sticky; /* Creates the sticky scroll effect */
+    top: 100px; /* Sticks 100px from the top of your screen */
+    z-index: 10;
+}
+
 .vertical-title { writing-mode: vertical-rl; transform: rotate(180deg); font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif; font-size: 55px; font-weight: 300; color: #000000; white-space: nowrap; }
 .vertical-title .text-red { color: #cc0000; font-weight: bold; }
 .vertical-red-line { width: 3px; height: 120px; background-color: #cc0000; margin-top: 25px; }
+
 .services-list { flex: 1; display: flex; flex-direction: column; gap: 50px; padding-top: 10px; }
-.service-row { display: flex; align-items: flex-start; gap: 40px; }
+
+/* Adds a smooth 3D slide/lift effect to services on hover */
+.service-row { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 40px; 
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.service-row:hover {
+    transform: translateX(10px);
+    background-color: #fafafa;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
 .service-header { flex: 0 0 35%; display: flex; flex-direction: column; gap: 20px; }
 .service-header h3 { font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif; font-size: 36px; font-weight: 400; color: #000000; }
 .service-tags { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -38,16 +74,41 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
 .tag-dark { background-color: #353a40; }
 .service-text { flex: 1; }
 .service-text p { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.6; color: #000000; margin: 0; }
-.service-divider { border: none; border-bottom: 2px solid #e0e0e0; margin: 0; }
+.service-divider { border: none; border-bottom: 2px solid #e0e0e0; margin: 0 20px; }
 
-/* Portfolio Section */
-.portfolio-section { display: flex; max-width: 1200px; margin: 100px auto; padding: 0 20px; gap: 60px; }
+/* --- Portfolio Section --- */
+.portfolio-section { 
+    display: flex; 
+    max-width: 1200px; 
+    margin: 100px auto; 
+    padding: 0 20px; 
+    gap: 60px; 
+    align-items: flex-start; /* Crucial for sticky sidebar */
+}
+
 .portfolio-content { flex: 1; display: flex; flex-direction: column; gap: 80px; padding-top: 10px; }
-.portfolio-row { display: flex; align-items: center; gap: 50px; }
+.portfolio-row { display: flex; align-items: center; gap: 50px; cursor: pointer; }
 .portfolio-text { flex: 1; }
 .portfolio-text p { font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif; font-size: 20px; line-height: 1.5; color: #000000; margin: 0; }
-.portfolio-image { flex: 1; }
-.portfolio-image img { width: 100%; height: auto; border-radius: 30px; display: block; object-fit: cover; }
+
+/* Adds a smooth image zoom effect on hover */
+.portfolio-image { 
+    flex: 1; 
+    border-radius: 30px; 
+    overflow: hidden; /* Keeps the curved edges clean during zoom */
+}
+
+.portfolio-image img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    object-fit: cover; 
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-row:hover .portfolio-image img {
+    transform: scale(1.05);
+}
 
 /* Graphic Design Section */
 .graphic-design-section { background-color: #4b0e68; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: flex-start; position: relative; overflow: hidden; }
@@ -158,10 +219,11 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
 }
 
 /* --- Our Process Section --- */
+/* --- Our Process Section Fix --- */
 .our-process-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    /* Removed overflow: hidden so sticky positioning can escape and work properly */
     background-color: #ffffff;
 }
 
@@ -172,7 +234,7 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
+
     z-index: 1;
     pointer-events: none;
 }
@@ -185,7 +247,56 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     gap: 60px;
     position: relative;
     z-index: 2;
+    align-items: flex-start; /* Keeps the sidebar aligned to the top */
 }
+
+/* Ensure the sidebar matches the sticky behavior of your services section */
+.our-process-section .services-sidebar {
+    position: sticky;
+    top: 100px;
+    z-index: 10;
+}
+
+/* Add smooth transition and padding to the rows */
+.process-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 750px;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+}
+
+/* Left-aligned steps slide right on hover */
+.process-row.left-align:hover {
+    transform: translateX(10px);
+    background-color: rgba(250, 250, 250, 0.9); /* Slightly transparent so the road shows through */
+    border: 1px solid #eeeeee;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+/* Right-aligned steps slide left on hover */
+.process-row.right-align:hover {
+    transform: translateX(-10px);
+    background-color: rgba(250, 250, 250, 0.9);
+    border: 1px solid #eeeeee;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+.process-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    z-index: 1;
+    pointer-events: none;
+}
+
+
 
 .process-content {
     flex: 1;
@@ -677,7 +788,7 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     .trusted-by-title::before { margin-right: 15px; }
     .trusted-by-title::after { margin-left: 15px; }
     .our-services-section { flex-direction: column; gap: 40px; margin: 60px auto; }
-    .services-sidebar { flex-direction: row; align-items: center; gap: 20px; }
+    .services-sidebar { position: static; flex-direction: row; align-items: center; gap: 20px; }
     .vertical-title { writing-mode: horizontal-tb; transform: none; font-size: 42px; }
     .vertical-red-line { width: 80px; height: 3px; margin-top: 0; }
     .service-row { flex-direction: column; gap: 20px; }
@@ -691,6 +802,7 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     .work-text-outline { font-size: 80px; -webkit-text-stroke: 1.5px #ff0000; letter-spacing: 4px; }
     .work-logos-container { margin-top: 40px; }
     .work-logos-img { height: 250px; padding-right: 0px; }
+    .our-process-section .services-sidebar { position: static; }
     .contact-heading {
         font-size: 60px;
     }
@@ -703,4 +815,16 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     .footer-tagline {
         font-size: 22px;
     }
+}
+
+/* --- Scroll Entry Animations --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
