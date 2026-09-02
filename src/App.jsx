@@ -3,8 +3,8 @@ import './App.css';
 
 function App() {
   const [showBanners, setShowBanners] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Automatically detects when sections enter the screen to trigger the entry animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -14,7 +14,7 @@ function App() {
           }
         });
       },
-      { threshold: 0.15 } // Triggers when 15% of the section is visible
+      { threshold: 0.15 }
     );
 
     const animatedElements = document.querySelectorAll('.our-services-section, .portfolio-section, .our-process-section');
@@ -25,12 +25,30 @@ function App() {
 
   return (
     <>
-      <main className="hero">
+      <div className={`hamburger-btn ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div className={`nav-overlay ${menuOpen ? 'open' : ''}`}>
+        <ul className="nav-menu-links">
+          <li><a href="#hero" onClick={() => setMenuOpen(false)}>Home</a></li>
+          <li><a href="#services" onClick={() => setMenuOpen(false)}>Services</a></li>
+          <li><a href="#portfolio" onClick={() => setMenuOpen(false)}>Portfolio</a></li>
+          <li><a href="#work" onClick={() => setMenuOpen(false)}>Our Work</a></li>
+          <li><a href="#process" onClick={() => setMenuOpen(false)}>Process</a></li>
+          <li><a href="#reviews" onClick={() => setMenuOpen(false)}>Reviews</a></li>
+          <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact Us</a></li>
+        </ul>
+      </div>
+
+      <main className="hero" id="hero">
         <img src="images/logo.png" alt="HAI Creations Logo" className="logo" />
         <img src="images/creative-solutions.png" alt="Creative Solutions" className="creative-image" />
       </main>
 
-      <section className="red-card-section">
+      <section className="red-card-section" id="about">
         <img src="images/logo.png" alt="Hai Creations Watermark" className="watermark-img" />
         <div className="red-card-content">
           <p>Hai Creations (Pvt) Ltd<br />is a smart mix of talented professionals,<br />who are dedicated to moving mountains<br />to deliver a masterpiece beyond<br />expectations to benefit our clientele.</p>
@@ -45,7 +63,7 @@ function App() {
         <img src="images/trustedBy.png" alt="Trusted Clients" className="trusted-by-logos" />
       </div>
 
-      <section className="our-services-section animate-on-scroll">
+      <section className="our-services-section animate-on-scroll" id="services">
         <div className="services-sidebar">
           <h2 className="vertical-title"><span className="text-red">Our</span> Services</h2>
           <div className="vertical-red-line"></div>
@@ -112,7 +130,7 @@ function App() {
         </div>
       </section>
 
-      <section className="portfolio-section animate-on-scroll">
+      <section className="portfolio-section animate-on-scroll" id="portfolio">
         <div className="services-sidebar">
           <h2 className="vertical-title"><span className="text-red">Our</span> Portfolio</h2>
           <div className="vertical-red-line"></div>
@@ -137,7 +155,6 @@ function App() {
         </div>
       </section>
 
-      {/* Graphic Design Section */}
       <section className="graphic-design-section">
         <div className="graphic-top-container">
           <div className="graphic-collage">
@@ -155,8 +172,7 @@ function App() {
         </div>
       </section>
 
-      {/* Our Work Section */}
-      <section className="our-work-section">
+      <section className="our-work-section" id="work">
         <div 
           className="our-work-title" 
           onClick={() => setShowBanners(!showBanners)}
@@ -166,7 +182,6 @@ function App() {
           <div className="work-text-outline">WORK</div>
         </div>
 
-        {/* Expandable Banners Container */}
         <div className={`banners-wrapper ${showBanners ? 'open' : ''}`}>
           <div className="banners-inner">
             <div className="banners-grid">
@@ -190,8 +205,7 @@ function App() {
         </div>
       </section>
 
-      {/* Our Process Section */}
-      <section className="our-process-wrapper">
+      <section className="our-process-wrapper" id="process">
         <img src="images/road.png" alt="Road Background" className="process-bg-img" />
         <div className="our-process-section animate-on-scroll">
           
@@ -201,7 +215,6 @@ function App() {
           </div>
 
           <div className="process-content">
-            {/* Step 1 */}
             <div className="process-row left-align">
               <div className="process-circle bg-red">01</div>
               <div className="process-text">
@@ -210,7 +223,6 @@ function App() {
               </div>
             </div>
 
-            {/* Step 2 */}
             <div className="process-row right-align">
               <div className="process-text text-right">
                 <h3>Design</h3>
@@ -219,7 +231,6 @@ function App() {
               <div className="process-circle bg-dark">02</div>
             </div>
 
-            {/* Step 3 */}
             <div className="process-row left-align">
               <div className="process-circle bg-red">03</div>
               <div className="process-text">
@@ -228,7 +239,6 @@ function App() {
               </div>
             </div>
 
-            {/* Step 4 */}
             <div className="process-row right-align">
               <div className="process-text text-right">
                 <h3>Quality Check</h3>
@@ -241,8 +251,7 @@ function App() {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section className="reviews-section">
+      <section className="reviews-section" id="reviews">
         <div className="reviews-hero">
           <img src="images/reviews.png" alt="Reviews Background" className="reviews-hero-img" />
         </div>
@@ -253,7 +262,6 @@ function App() {
         </div>
 
         <div className="reviews-container">
-          {/* Top Row: Slowly Scrolls Right */}
           <div className="reviews-track track-right">
             {[...Array(10)].map((_, i) => (
               <div className="review-card" key={`top-${i}`}>
@@ -263,7 +271,6 @@ function App() {
             ))}
           </div>
 
-          {/* Bottom Row: Slowly Scrolls Left */}
           <div className="reviews-track track-left">
             {[...Array(10)].map((_, i) => (
               <div className="review-card" key={`bottom-${i}`}>
@@ -275,8 +282,7 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="contact-section">
+      <section className="contact-section" id="contact">
         <div className="contact-left">
           <h1 className="contact-heading">Let's<br />Create</h1>
           <p className="contact-subtext">We're ready to speak when you are.</p>
@@ -317,7 +323,6 @@ function App() {
         </div>
       </section>
 
-      {/* Footer Section */}
       <footer className="site-footer">
         <div className="footer-left">
           <p className="footer-tagline">
@@ -325,11 +330,11 @@ function App() {
           </p>
           <div className="footer-links-grid">
             <div className="footer-col">
-              <a href="#home">Home</a>
+              <a href="#hero">Home</a>
               <a href="#portfolio">Portfolio</a>
             </div>
             <div className="footer-col">
-              <a href="#home">Home</a>
+              <a href="#hero">Home</a>
               <a href="#portfolio">Portfolio</a>
             </div>
           </div>
