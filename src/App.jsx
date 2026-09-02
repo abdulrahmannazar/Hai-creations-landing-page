@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [showBanners, setShowBanners] = useState(false);
+
   return (
     <>
       <main className="hero">
@@ -136,9 +138,29 @@ function App() {
 
       {/* Our Work Section */}
       <section className="our-work-section">
-        <div className="our-work-title">
+        <div 
+          className="our-work-title" 
+          onClick={() => setShowBanners(!showBanners)}
+          title="Click to view our banners"
+        >
           <div className="our-text">OUR</div>
           <div className="work-text-outline">WORK</div>
+        </div>
+
+        {/* Expandable Banners Container */}
+        <div className={`banners-wrapper ${showBanners ? 'open' : ''}`}>
+          <div className="banners-inner">
+            <div className="banners-grid">
+              {[...Array(10)].map((_, i) => (
+                <img 
+                  key={i} 
+                  src={`images/Banner${i + 1}.png`} 
+                  alt={`Banner ${i + 1}`} 
+                  className="banner-pic"
+                />
+              ))}
+            </div>
+          </div>
         </div>
         
         <div className="work-logos-container">
@@ -149,7 +171,58 @@ function App() {
         </div>
       </section>
 
+      {/* Our Process Section */}
+      <section className="our-process-wrapper">
+        <img src="images/road.png" alt="Road Background" className="process-bg-img" />
+        <div className="our-process-section">
+          
+          <div className="services-sidebar">
+            <h2 className="vertical-title"><span className="text-red">Our</span> Process</h2>
+            <div className="vertical-red-line"></div>
+          </div>
 
+          <div className="process-content">
+            {/* Step 1 */}
+            <div className="process-row left-align">
+              <div className="process-circle bg-red">01</div>
+              <div className="process-text">
+                <h3>Strategy</h3>
+                <p>We are a leading creative agency providing bespoke branding services to elevate your online presence. Specializing in unique and memorable visuals, we create branding that captures your tone of voice and resonates with your customers.</p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="process-row right-align">
+              <div className="process-text text-right">
+                <h3>Design</h3>
+                <p>We are a leading creative agency providing bespoke branding services to elevate your online presence. Specializing in unique and memorable visuals, we create branding that captures your tone of voice and resonates with your customers.</p>
+              </div>
+              <div className="process-circle bg-dark">02</div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="process-row left-align">
+              <div className="process-circle bg-red">03</div>
+              <div className="process-text">
+                <h3>Development</h3>
+                <p>We are a leading creative agency providing bespoke branding services to elevate your online presence. Specializing in unique and memorable visuals, we create branding that captures your tone of voice and resonates with your customers.</p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="process-row right-align">
+              <div className="process-text text-right">
+                <h3>Quality Check</h3>
+                <p>We are a leading creative agency providing bespoke branding services to elevate your online presence. Specializing in unique and memorable visuals, we create branding that captures your tone of voice and resonates with your customers.</p>
+              </div>
+              <div className="process-circle bg-dark">04</div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      
     </>
   );
 }
