@@ -53,13 +53,80 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
 .graphic-design-section { background-color: #4b0e68; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: flex-start; position: relative; overflow: hidden; }
 .graphic-top-container { flex: 0 0 45%; height: 100vh; display: flex; align-items: center; z-index: 2; }
 .graphic-collage { width: 100%; display: flex; align-items: center; justify-content: center; }
-.graphic-collage img { height: 72vh; width: auto; max-width: none; object-fit: contain; transform: scale(1.1) translateX(8%);  }
+.graphic-collage img { height: 70vh; width: auto; max-width: none; object-fit: contain; transform: scale(1.1) translateX(8%);  }
 .graphic-content { flex: 0 0 40%; z-index: 3; padding-left: 20px; padding-right: 250px;}
 .graphic-content p { color: #cca4d4; font-family: 'Segoe UI', Arial, sans-serif; font-size: 24px; font-weight: 300; line-height: 1.5; margin-bottom: 25px; }
 .graphic-content p:last-child { margin-bottom: 0; }
 .graphic-huge-text { position: absolute; right: 0px; top: 50%; transform: translateY(-50%) rotate(180deg); display: flex; flex-direction: row; align-items: center; z-index: 1; pointer-events: none; }
 .huge-design { writing-mode: vertical-rl; font-size: 75px; font-weight: bold; font-family: Arial, sans-serif; color: rgba(0, 0, 0, 0.08); text-transform: lowercase; line-height: 0.8; }
 .huge-graphic { writing-mode: vertical-rl; font-size: 240px; font-weight: bold; font-family: Arial, sans-serif; color: rgba(0, 0, 0, 0.08); text-transform: lowercase; line-height: 0.75; margin-left: -20px; }
+
+/* Our Work Section */
+.our-work-section {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.our-work-title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Solid Black 'OUR' */
+.our-text {
+    font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif;
+    font-size: 100px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 0.9;
+    letter-spacing: 5px;
+}
+
+/* Transparent Red Outlined 'WORK' */
+.work-text-outline {
+    font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif;
+    font-size: 180px;
+    font-weight: bold;
+    color: transparent; /* Makes the inside of the text invisible */
+    -webkit-text-stroke: 3px #ff0000; /* Creates the red outline */
+    line-height: 0.9;
+    letter-spacing: 12px;
+}
+
+.work-logos-container {
+    width: 100%;
+    overflow: hidden; /* Hides everything outside the container boundaries */
+    margin-top: 60px;
+}
+
+.work-logos-track {
+    display: flex;
+    width: 200%; /* Exactly twice the width to hold both images side-by-side */
+    animation: scrollRight 25s linear infinite; /* Adjust 25s to change the speed */
+}
+
+.work-logos-img {
+    width: 50%; /* Each image takes exactly half the track */
+    height: auto;
+    object-fit: contain;
+}
+
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
 
 /* --- MEDIA QUERIES --- */
 
@@ -71,6 +138,17 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     .graphic-content { width: 100%; max-width: 100%; padding: 40px 30px; }
     .graphic-content p { color: #000000; font-size: 16px; font-style: italic; font-weight: normal; }
     .graphic-huge-text { right: -10px; transform: translateY(-50%) rotate(180deg) scale(0.5); transform-origin: right center; opacity: 0.2; }
+    .our-work-section {
+        padding: 80px 0; /* Remove side padding so the loop reaches the screen edges */
+    }
+    .our-text {
+        font-size: 80px;
+    }
+    .work-text-outline {
+        font-size: 130px;
+        -webkit-text-stroke: 2px #ff0000;
+        letter-spacing: 8px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -101,4 +179,19 @@ body { background: #ffffff; font-family: Arial, sans-serif; }
     .portfolio-row { flex-direction: column-reverse; gap: 30px; }
     .portfolio-row.mobile-reverse { flex-direction: column; }
     .portfolio-text p { font-size: 16px; text-align: center; }
+    .our-work-section {
+            padding: 60px 0; /* Remove side padding so the loop reaches the screen edges */
+        }
+        .our-text {
+            font-size: 50px;
+            letter-spacing: 2px;
+        }
+        .work-text-outline {
+            font-size: 80px;
+            -webkit-text-stroke: 1.5px #ff0000;
+            letter-spacing: 4px;
+        }
+        .work-logos-container {
+            margin-top: 40px;
+        }
 }

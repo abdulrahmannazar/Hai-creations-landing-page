@@ -134,6 +134,21 @@ function App() {
         </div>
       </section>
 
+      {/* Our Work Section */}
+      <section className="our-work-section">
+        <div className="our-work-title">
+          <div className="our-text">OUR</div>
+          <div className="work-text-outline">WORK</div>
+        </div>
+        
+        <div className="work-logos-container">
+          <div className="work-logos-track">
+            <img src="images/trustedBy.png" alt="Our Client Work Logos" className="work-logos-img" />
+            <img src="images/trustedBy.png" alt="Our Client Work Logos" className="work-logos-img" />
+          </div>
+        </div>
+      </section>
+
 
     </>
   );
