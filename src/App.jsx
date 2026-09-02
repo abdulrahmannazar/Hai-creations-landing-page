@@ -222,7 +222,39 @@ function App() {
         </div>
       </section>
 
-      
+      {/* Reviews Section */}
+      <section className="reviews-section">
+        <div className="reviews-hero">
+          <img src="images/reviews.png" alt="Reviews Background" className="reviews-hero-img" />
+        </div>
+        
+        <div className="reviews-header">
+          <div className="horizontal-red-line"></div>
+          <h2>What People say about <span className="text-red">Us</span></h2>
+        </div>
+
+        <div className="reviews-container">
+          {/* Top Row: Slowly Scrolls Right */}
+          <div className="reviews-track track-right">
+            {[...Array(10)].map((_, i) => (
+              <div className="review-card" key={`top-${i}`}>
+                <p>Hai creations provided a best and fast service</p>
+                <span>-Someone</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Row: Slowly Scrolls Left */}
+          <div className="reviews-track track-left">
+            {[...Array(10)].map((_, i) => (
+              <div className="review-card" key={`bottom-${i}`}>
+                <p>Hai creations provided a best and fast service</p>
+                <span>-Someone</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
